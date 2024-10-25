@@ -160,8 +160,6 @@ const rooms = {
 }
 
 //12
-console.log('-- 12 --');
-
 function addContact(objectName, contactName, contactPhone) {
   return {
     John: {
@@ -193,23 +191,25 @@ const johnContactInfo = findContact(contactsWithJohn, 'John');
 console.log(johnContactInfo); // "Name: John, Phone: 123 456 789"
 
 //14
-function validateUserGreet(object) {
-  const objectFirstName = object['firstName'];
-  const objectLastName = object['lastName'];
-  const objectGreetString = object['greet'].toString();
-
-  return objectGreetString.includes(objectFirstName) && objectGreetString.includes(objectLastName);
-}
-
-function validateIfObjectIsAUser(object) {
+function validateDataType(object) {
   const isFirstNameString = typeof object['firstName'] === 'string';
   const isLastNameString = typeof object['lastName'] === 'string';
   const isAgeNumber = typeof object['age'] === 'number';
   const isGreetProperty = typeof object['greet'] === 'function';
 
-  if (isFirstNameString && isLastNameString && isAgeNumber && isGreetProperty && validateUserGreet(object))  {
-    return true;
-  }
+  return isFirstNameString && isLastNameString && isAgeNumber && isGreetProperty;
+}
+
+function validateUserGreetString(object) {
+  const objectFirstName = object['firstName'];
+  const objectLastName = object['lastName'];
+  const getObjectGreetString = object['greet'].toString();
+
+  return getObjectGreetString.includes(objectFirstName) && getObjectGreetString.includes(objectLastName);
+}
+
+function validateIfObjectIsAUser(object) {
+  return validateDataType(object) && validateUserGreetString(object);
 }
 
 const personData = {
