@@ -33,12 +33,7 @@ console.log(isObject(10)); // false
 console.log(isObject(null)); // false
 
 // 4
-function checkIfPropertyIsDefined(object, propertyName) {
-  return object[propertyName] !== undefined;
-}
-
 function removeProperty(object, propertyName) {
-
   if (checkIfPropertyIsDefined(object, propertyName)) {
     delete object[propertyName];
     return true;
@@ -58,8 +53,8 @@ console.log(userObject); // {}
 
 
 // 5
-function checkIfUsersHaveTheSameName(firstObject, secondObject) {
-  return firstObject['firstName'] === secondObject['firstName'];
+function checkIfUsersHaveTheSameName(firstUser, secondUser) {
+  return firstUser.firstName === secondUser.firstName;
 }
 
 const firstJohn = {
@@ -111,9 +106,9 @@ console.log(getCityInformation({
 
 // 9
 function getUserCopy(user) {
-  return userData = {
-    firstName: user['firstName'],
-    lastName: user['lastName'],
+  return {
+    firstName: user.firstName,
+    lastName: user.lastName,
   };
 }
 
@@ -129,7 +124,7 @@ console.log(newUser.lastName); // Smith
 console.log(newUser === john); // false <-- this is crucial
 
 //10
-function getAnimalObject(animalObject) {
+function getAnimalDescription(animalObject) {
   return `This ${animalObject.color} ${animalObject.name} has ${animalObject.legs} legs`;
 }
 
@@ -139,7 +134,7 @@ const animal = {
   color: "white",
 }
 
-console.log(getAnimalObject(animal));
+console.log(getAnimalDescription(animal));
 
 //11
 const rooms = {
@@ -179,12 +174,10 @@ console.log(contacts === contactsWithJohn); // false
 console.log(contacts.John); // undefined
 
 //13
-console.log();
 function findContact(objectName, searchedName) {
   if (contactsWithJohn.John.name === searchedName) {
     return contactsWithJohn[searchedName];
   }
-  return undefined;
 }
 
 const johnContactInfo = findContact(contactsWithJohn, 'John');
@@ -192,18 +185,18 @@ console.log(johnContactInfo); // "Name: John, Phone: 123 456 789"
 
 //14
 function validateDataType(object) {
-  const isFirstNameString = typeof object['firstName'] === 'string';
-  const isLastNameString = typeof object['lastName'] === 'string';
-  const isAgeNumber = typeof object['age'] === 'number';
-  const isGreetProperty = typeof object['greet'] === 'function';
+  const isFirstNameString = typeof object.firstName === 'string';
+  const isLastNameString = typeof object.lastName === 'string';
+  const isAgeNumber = typeof object.age === 'number';
+  const isGreetFunction = typeof object.greet === 'function';
 
-  return isFirstNameString && isLastNameString && isAgeNumber && isGreetProperty;
+  return isFirstNameString && isLastNameString && isAgeNumber && isGreetFunction;
 }
 
 function validateUserGreetString(object) {
-  const objectFirstName = object['firstName'];
-  const objectLastName = object['lastName'];
-  const getObjectGreetString = object['greet'].toString();
+  const objectFirstName = object.firstName;
+  const objectLastName = object.lastName;
+  const getObjectGreetString = object.greet();
 
   return getObjectGreetString.includes(objectFirstName) && getObjectGreetString.includes(objectLastName);
 }
