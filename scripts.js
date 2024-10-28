@@ -155,9 +155,9 @@ const rooms = {
 }
 
 //12
-function addContact(objectName, contactName, contactPhone) {
+function addContact(object, contactName, contactPhone) {
   return {
-    John: {
+    [contactName]: {
       name: contactName,
       phoneNumber: contactPhone,
     }
@@ -172,6 +172,9 @@ console.log(contactsWithJohn.John.phoneNumber); // '123 456 789'
 
 console.log(contacts === contactsWithJohn); // false
 console.log(contacts.John); // undefined
+
+const contactsWithKate = addContact({}, 'Kate', '789 123 456');
+console.log(contactsWithKate.Kate.name); // Kate
 
 //13
 function findContact(objectName, searchedName) {
