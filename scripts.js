@@ -156,13 +156,16 @@ const rooms = {
 
 //12
 function addContact(object, contactName, contactPhone) {
-  return {
-    [contactName]: {
-      name: contactName,
-      phoneNumber: contactPhone,
-    }
+  const newContacts = Object.assign({}, object);
+
+  newContacts[contactName] = {
+    name: contactName,
+    phoneNumber: contactPhone
   }
+
+  return newContacts;
 }
+
 
 const contacts = {};
 const contactsWithJohn = addContact(contacts, 'John', '123 456 789');
@@ -178,13 +181,17 @@ console.log(contactsWithKate.Kate.name); // Kate
 
 //13
 function findContact(objectName, searchedName) {
-  if (contactsWithJohn.John.name === searchedName) {
-    return contactsWithJohn[searchedName];
-  }
+  return objectName[searchedName];
 }
 
 const johnContactInfo = findContact(contactsWithJohn, 'John');
 console.log(johnContactInfo); // "Name: John, Phone: 123 456 789"
+
+const kateContactInfo = findContact(contactsWithKate, 'Kate');
+console.log(kateContactInfo); // "Name: Kate, Phone: 789 123 456"
+
+const benContactInfo = findContact(contactsWithKate, 'Ben');
+console.log(benContactInfo); // "undefined"
 
 //14
 function validateDataType(object) {
