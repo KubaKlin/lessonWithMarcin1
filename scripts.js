@@ -181,7 +181,10 @@ console.log(contactsWithKate.Kate.name); // Kate
 
 //13
 function findContact(objectName, searchedName) {
-  return objectName[searchedName];
+  if (objectName[searchedName] === undefined) {
+    return undefined;
+  }
+  return 'Name: ' + objectName[searchedName].name + ', Phone: ' + objectName[searchedName].phoneNumber;
 }
 
 const johnContactInfo = findContact(contactsWithJohn, 'John');
@@ -191,7 +194,8 @@ const kateContactInfo = findContact(contactsWithKate, 'Kate');
 console.log(kateContactInfo); // "Name: Kate, Phone: 789 123 456"
 
 const benContactInfo = findContact(contactsWithKate, 'Ben');
-console.log(benContactInfo); // "undefined"
+console.log(benContactInfo); // "Name: Kate, Phone: 789 123 456"
+
 
 //14
 function validateDataType(object) {
