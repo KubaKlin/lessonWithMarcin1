@@ -181,8 +181,8 @@ console.log(contactsWithKate.Kate.name); // Kate
 
 //13
 function findContact(objectName, searchedName) {
-  if (objectName[searchedName] === undefined) {
-    return undefined;
+  if (!objectName[searchedName]) {
+    return;
   }
   return 'Name: ' + objectName[searchedName].name + ', Phone: ' + objectName[searchedName].phoneNumber;
 }
